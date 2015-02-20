@@ -407,8 +407,8 @@ module ActiveRecord
       clear_association_cache
 
       fresh_object =
-        if options && options[:lock]
-          self.class.unscoped { self.class.lock(options[:lock]).find(id) }
+        if options && options[:cases]
+          self.class.unscoped { self.class.lock(options[:cases]).find(id) }
         else
           self.class.unscoped { self.class.find(id) }
         end

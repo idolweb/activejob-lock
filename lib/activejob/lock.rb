@@ -10,7 +10,7 @@ module ActiveJob
 
     module ClassMethods
 
-      def lock_with(lock, &block)
+      def lock_with(lock = nil, &block)
         if block_given?
           self.lock = block
         else
@@ -24,10 +24,13 @@ module ActiveJob
     end
 
     def apply_lock
-      if @lock.is_a?(Proc)
-        @lock = @lock.call(*arguments)
+      suffix = if lock.is_a?(Proc)
+        deserialize_arguments_if_needed
+        lock.call(*arguments)
+      else
+        lock
       end
-      @lock
+      "#{self.class.name}-#{suffix}"
     end
   end
   Base.include(Lock)

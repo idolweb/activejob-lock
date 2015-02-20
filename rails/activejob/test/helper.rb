@@ -1,7 +1,8 @@
-require File.expand_path('../../../load_paths', __FILE__)
+#require File.expand_path('../../../load_paths', __FILE__)
 
 require 'active_job'
 require 'support/job_buffer'
+require 'activejob/lock'
 
 GlobalID.app = 'aj'
 

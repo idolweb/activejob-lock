@@ -51,7 +51,7 @@ module ActiveRecord
 
       NORMAL_VALUES = Relation::SINGLE_VALUE_METHODS +
                       Relation::MULTI_VALUE_METHODS -
-                      [:joins, :where, :order, :bind, :reverse_order, :lock, :create_with, :reordering, :from] # :nodoc:
+                      [:joins, :where, :order, :bind, :reverse_order, :cases, :create_with, :reordering, :from] # :nodoc:
 
       def normal_values
         NORMAL_VALUES

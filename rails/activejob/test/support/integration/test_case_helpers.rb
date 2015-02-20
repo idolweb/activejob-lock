@@ -31,10 +31,10 @@ module TestCaseHelpers
       ActiveJob::Base.queue_adapter.name.split("::").last.gsub(/Adapter$/, '').underscore==adapter.to_s
     end
 
-    def wait_for_jobs_to_finish_for(seconds=60)
+    def wait_for_jobs_to_finish_for(seconds=60, id=@id)
       begin
         Timeout.timeout(seconds) do
-          while !job_executed do
+          while !job_executed(id) do
             sleep 0.25
           end
         end
@@ -42,7 +42,7 @@ module TestCaseHelpers
       end
     end
 
-    def job_executed
-      Dummy::Application.root.join("tmp/#{@id}").exist?
+    def job_executed(id = @id)
+      Dummy::Application.root.join("tmp/#{id}").exist?
     end
 end

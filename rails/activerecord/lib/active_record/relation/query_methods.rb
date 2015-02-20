@@ -348,7 +348,7 @@ module ActiveRecord
       self
     end
 
-    VALID_UNSCOPING_VALUES = Set.new([:where, :select, :group, :order, :lock,
+    VALID_UNSCOPING_VALUES = Set.new([:where, :select, :group, :order, :cases,
                                      :limit, :offset, :joins, :includes, :from,
                                      :readonly, :having])
 

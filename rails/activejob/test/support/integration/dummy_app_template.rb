@@ -13,9 +13,15 @@ class TestJob < ActiveJob::Base
   queue_as :integration_tests
 
   def perform(x)
+    sleep(1)
     File.open(Rails.root.join("tmp/\#{x}"), "w+") do |f|
       f.write x
     end
   end
+end
+CODE
+
+file 'app/jobs/test_job2.rb', <<-CODE
+class TestJob2 < TestJob
 end
 CODE

@@ -1,6 +1,6 @@
 # Activejob::Lock
 
-TODO: Write a gem description
+When you want only one instance of your job queued at a time.
 
 ## Installation
 
@@ -20,11 +20,28 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'activejob/lock'
+
+class MyLockedJob < ActiveJob::Base
+  lock_with do |record, message|
+    record
+  end
+
+  def perform(record, message)
+    record.do_work
+  end
+end
+```
+
+There will never be two MyLockedJob for the same record enqueued at the same time.
+
+Currently works only for resque.
+Contributions are welcomed for other backends.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/activejob-lock/fork )
+1. Fork it ( https://github.com/idolweb/activejob-lock/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
