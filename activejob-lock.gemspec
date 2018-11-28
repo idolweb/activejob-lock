@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage      = 'http://github.com/idolweb/activejob-lock'
   s.license       = "MIT"
 
-  s.files         = `git ls-files`.split($\)
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
   s.require_paths = ["lib"]
